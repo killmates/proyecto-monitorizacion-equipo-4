@@ -64,3 +64,26 @@ sudo systemctl status nginx_exporter.service
 **Por últimopara comprobar el éxito final en Prometheus ponemos en el navegador** http://localhost:9090 **status > targets > job nginx_metrics en verde o UP.** 
 <img width="1338" height="155" alt="imagen" src="https://github.com/user-attachments/assets/268fcc3b-62ea-41c5-a9cc-c212521eedf5" />
 
+**Alertas propuestas**
+
+Con estas dos alertas garantizamos la disponibilidad del servicio, y se implementarán dentro de Prometheus. Estas métricas se encargan y vigilan de forma exclusiva tanto el estado del servidor web como la integridad del sistema de monitorización:
+
+      - alert: NginxServerDown
+        expr: nginx_up == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "¡Servidor NGINX caído!"
+          description: "El exporter está levantado, pero reporta que NGINX no responde en {{ $labels.instance }}."
+
+     
+      - alert: NginxExporterDown
+        expr: up{job="nginx_metrics"} == 0
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "¡NGINX Exporter inaccesible!"
+          description: "Prometheus no puede raspar las métricas del exporter en {{ $labels.instance }}."
+
