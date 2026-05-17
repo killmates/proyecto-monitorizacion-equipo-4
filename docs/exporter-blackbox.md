@@ -3,8 +3,12 @@ Leo Serrano Bermúdez
 ### ¿Qué hace blackbox?
 Es un exporter encargado de monitorear metricas de red como HTTP, HTTPS, DNS, TCP Y ICMP. Con el puedes analizar el tiempo que tarda un endpoint en responder o si está caido con diferentes alertas configurables.
 
+---
+
 ### Arquitectura
 Prometheus --> Blackbox Exporter --> Pagina Web
+
+---
 
 ### Instalación
   1. mkdir blackbox
@@ -35,6 +39,8 @@ Prometheus --> Blackbox Exporter --> Pagina Web
   8. sudo systemctl start blackbox_exporter.service
   9. sudo systemctl status blackbox_exporter.service
 
+---
+
 ### Métricas
 #### probe_success
 Tipo: Gauge\
@@ -51,13 +57,19 @@ Tipo: Gauge\
 Mide: Calcula la fecha y hora exacta en el que caducara el certificado SSL/TLS\
 Nuetra elección: Asegurará la identidad de la página web y el intercambio de información segura entre página y clientes. Sin el certificado todo eso no se cumpliría todo eso y podrian verse afectados datos, es por eso que nos avisará de su caducidad temprana.
 
+---
+
 ### Alerta propuesta
 Nombre: CaidaSitioWeb\
 Lenguaje natural: Si el sitio web no responde por más de un minuto está caido.\
 Justificación del umbral: Normalmente las paginas web suelen responder rapido o si tardan no superan una cantidad de tiempo muy alta, es por eso que si el sitio tarda más de un minuto se dará por echo que está caida.
 
+---
+
 ### Inconveniente
 No nos permitirá saber donde se encuentra los errores o problemas en el intercambio de paquetes y solamente nos muestra el resultado final
+
+---
 
 ### Actividad del servicio
 <img width="1753" height="368" alt="image" src="https://github.com/user-attachments/assets/6f34a9c1-abdb-4722-a153-44af69503166" />\
