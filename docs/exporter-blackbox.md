@@ -1,5 +1,7 @@
-BLACKBOX EXPORTER
-1. Instalación
+# BLACKBOX EXPORTER
+### ¿Qué hace blackbox?
+Es un exporter encargado de metricas de red como http
+### Instalación
   1. mkdir blackbox
   2. cd blackbox
   3. wget https://github.com/prometheus/blackbox_exporter/releases/download/v0.28.0/blackbox_exporter-0.28.0.linux-amd64.tar.gz
@@ -22,6 +24,9 @@ BLACKBOX EXPORTER
 
     [Install]
     WantedBy=multi-user.target
+    
+  <img width="1149" height="543" alt="image" src="https://github.com/user-attachments/assets/13f24e49-23ca-4251-b722-e368e285e9ba" />
+  
   6. sudo systemctl daemon-reload
   7. sudo systemctl enable blackbox_exporter.service
   8. sudo systemctl start blackbox_exporter.service
