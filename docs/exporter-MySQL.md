@@ -63,6 +63,7 @@ Es una herramienta que se conecta a MySQL y saca métricas para que Prometheus l
 
 6. Crear el servicio para que arranque solo
 
+
   **-sudo nano /etc/systemd/system/mysqld_exporter.service**
 
     Añadimos esto en el fichero
@@ -89,5 +90,17 @@ Es una herramienta que se conecta a MySQL y saca métricas para que Prometheus l
 
 ## COMPROBACION
 
- 
-  
+Mediante este comando podemos comprobar si esta activo el exporter
+
+<img width="512" height="114" alt="unnamed" src="https://github.com/user-attachments/assets/b04ae795-8016-436a-9985-d36d151f7179" />
+
+Al lado de mysql_up tiene que aparecer un 1, si es asi es que esta activo
+
+Tambien puedes mirarlo el el target de prometheus 
+
+<img width="512" height="219" alt="unnamed" src="https://github.com/user-attachments/assets/2400ed92-46a7-4c01-a710-1cd21d6e660d" />
+
+
+
+
+
