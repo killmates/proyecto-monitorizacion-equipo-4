@@ -73,3 +73,176 @@ node_exporter   blackbox_exp   mysqld_exporter
 nginx_exporter    haproxy_exporter
      :9117              :9101
 ```
+## 4. Cómo se levanta el sistema
+
+### 1. Actualizar el sistema
+
+```bash
+sudo apt update && sudo apt upgrade -y
+```
+
+---
+
+### 2. Crear estructura de monitorización
+
+```bash
+sudo mkdir -p /opt/monitoring
+```
+
+---
+
+### 3. Instalar Prometheus
+
+Crear usuario:
+
+```bash
+sudo useradd --no-create-home --shell /bin/false prometheus
+```
+
+Crear estructura:
+
+```bash
+sudo mkdir -p /opt/monitoring/prometheus/{bin,config,data}
+```
+
+Descargar Prometheus:
+
+```bash
+cd /tmp
+
+wget https://github.com/prometheus/prometheus/releases/download/v3.11.3/prometheus-3.11.3.linux-amd64.tar.gz
+```
+
+Descomprimir:
+
+```bash
+tar xvf prometheus-3.11.3.linux-amd64.tar.gz
+```
+
+Copiar binarios:
+
+```bash
+sudo cp prometheus promtool /opt/monitoring/prometheus/bin/
+```
+
+---
+
+### 4. Configurar Prometheus
+
+Editar configuración:
+
+```bash
+sudo nano /opt/monitoring/prometheus/config/prometheus.yml
+```
+
+Añadir los targets de:
+
+- node_exporter
+- blackbox_exporter
+- mysqld_exporter
+- nginx_exporter
+- haproxy_exporter
+
+---
+
+### 5. Crear servicio Prometheus
+
+```bash
+sudo nano /etc/systemd/system/prometheus.service
+```
+
+Iniciar servicio:
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable --now prometheus
+```
+
+---
+
+### 6. Instalar exporters
+
+#### Node Exporter
+
+```bash
+sudo useradd -rs /bin/false node_exporter
+```
+
+#### Blackbox Exporter
+
+```bash
+sudo useradd -rs /bin/false blackbox_exporter
+```
+
+#### MySQL Exporter
+Configurado para monitorizar MySQL y WordPress.
+
+#### NGINX Exporter
+Configurado para monitorizar el servidor web NGINX.
+
+#### HAProxy Exporter
+Configurado para monitorizar estadísticas del balanceador.
+
+---
+
+### 7. Instalar WordPress
+
+Instalar:
+- MySQL
+- PHP 8.1
+- WordPress
+- NGINX
+
+Configurar WordPress y conectar con MySQL.
+
+---
+
+### 8. Instalar HAProxy
+
+```bash
+sudo apt install -y haproxy
+```
+
+Configurar frontend y backend en:
+
+```bash
+sudo nano /etc/haproxy/haproxy.cfg
+```
+
+---
+
+### 9. Instalar Grafana
+
+```bash
+sudo apt install -y grafana
+```
+
+Iniciar:
+
+```bash
+sudo systemctl enable --now grafana-server
+```
+
+---
+
+### 10. Verificar funcionamiento
+
+#### WordPress
+```text
+http://IP_SERVIDOR
+```
+
+#### HAProxy
+```text
+http://IP_SERVIDOR:8080
+```
+
+#### Prometheus
+```text
+http://IP_SERVIDOR:9090
+```
+
+#### Grafana
+```text
+http://IP_SERVIDOR:3000
+```
