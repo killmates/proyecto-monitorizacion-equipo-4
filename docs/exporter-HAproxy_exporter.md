@@ -233,4 +233,6 @@ Abrir en navegador:
 Esta alerta detecta cuando el servicio HAProxy deja de responder durante más de 1 minuto. Se ha configurado con severidad crítica porque la caída del balanceador puede impedir el acceso a los servicios web monitorizados.
 
   <img width="1813" height="281" alt="imagen" src="https://github.com/user-attachments/assets/ca9a8ea8-c0e6-4c87-be9f-5828773703d4" />
+## 6. Una limitación
 
+El HAProxy Exporter depende de que HAProxy exponga correctamente sus estadísticas mediante el socket `admin.sock` o la página de estadísticas si estas dejan de funcionar, el exporter no podrá obtener métricas aunque el servicio siga activo este exporter únicamente monitoriza el balanceador de carga y no el estado interno de aplicaciones como WordPress o MySQL
