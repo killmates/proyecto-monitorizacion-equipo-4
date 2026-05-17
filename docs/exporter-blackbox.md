@@ -1,6 +1,10 @@
 # BLACKBOX EXPORTER
 ### ¿Qué hace blackbox?
-Es un exporter encargado de metricas de red como http
+Es un exporter encargado de monitorear metricas de red como HTTP, HTTPS, DNS, TCP Y ICMP. Con el puedes analizar el tiempo que tarda un endpoint en responder o si está caido con diferentes alertas configurables.
+
+### Arquitectura
+
+
 ### Instalación
   1. mkdir blackbox
   2. cd blackbox
@@ -15,6 +19,7 @@ Es un exporter encargado de metricas de red como http
     Description=Prometheus Blackbox Exporter
     Wants=network-online.target
     After=network-online.target
+    
     [Service]
     User=ubuntu
     Type=simple
