@@ -4,6 +4,15 @@
 
 **Encargado:** Óscar Martín
 
+## Inconvenientes y límitaciones
+
+**Versión gratuita metricas muy limitadas**
+
+**Sin detalles de errores ni URLs**
+
+**Si se configura mal, hay riesgo de seguridad por mala configuración**
+
+============================================================================
 
 **¿Que hace este Exporter?**
 Extrae las métricas de rendimiento de un servidor NGINX y las traduce al formato compatible con Prometheus para que puedas monitorear tu servidor en tiempo real.
@@ -69,7 +78,17 @@ sudo systemctl status nginx_exporter.service
 **Por últimopara comprobar el éxito final en Prometheus ponemos en el navegador** http://localhost:9090 **status > targets > job nginx_metrics en verde o UP.** 
 <img width="1338" height="155" alt="imagen" src="https://github.com/user-attachments/assets/268fcc3b-62ea-41c5-a9cc-c212521eedf5" />
 
-**Alertas propuestas**
+## Verificación de metricas
+
+**Verificar que NGINX expone sus datos locales:** curl http://127.0.0.1/nginx_status
+
+**Verificar los puertos activos en el sistema:** sudo ss -tunlp | grep -E '80|9113|9090'
+
+**Verificar el estado de los servicios en formato compacto:** sudo systemctl is-active nginx nginx_exporter prometheus
+
+**Verificar los tarjets desde la API de Prometheus:** curl -s http://localhost:9090/api/v1/targets | grep -o '"health":"[^"]*"'
+
+## Alertas propuestas
 
 Con estas dos alertas garantizamos la disponibilidad del servicio, y se implementarán dentro de Prometheus. Estas métricas se encargan y vigilan de forma exclusiva tanto el estado del servidor web como la integridad del sistema de monitorización:
 
