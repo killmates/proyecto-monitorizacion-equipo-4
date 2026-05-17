@@ -9,6 +9,10 @@ BLACKBOX EXPORTER
     Wants=network-online.target
     After=network-online.target
 
+    [Unit]
+    Description=Prometheus Blackbox Exporter
+    Wants=network-online.target
+    After=network-online.target
     [Service]
     User=ubuntu
     Type=simple
