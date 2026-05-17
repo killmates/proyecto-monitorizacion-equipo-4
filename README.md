@@ -270,4 +270,19 @@ Los puertos utilizados corresponden principalmente a los valores por defecto de 
 - HAProxy → 8080
 - MySQL → 3306
 
-No elegimos otros exporters porque no eran necesarios para los objetivos que teniamos y los escogidos cuadraban mñas con nuestros intereses.
+No elegimos otros exporters porque no eran necesarios para los objetivos que teniamos y los escogidos cuadraban mñas con nuestros intereses
+
+## 6. Limitaciones conocidas
+
+
+- Algunos exporters requieren configuración manual adicional dependiendo del entorno.
+- No se han implementado alertas avanzadas ni notificaciones automáticas mediante correo o Discord.
+- Los dashboards de Grafana son básicos y dan bastantes fallos
+- Si alguno de los exporters deja de responder, Prometheus dejará de recibir métricas de ese servicio.
+- El sistema monitoriza principalmente infraestructura y servicios, pero no el rendimiento interno completo de aplicaciones como WordPress.
+  
+## 7. Fuentes consultadas
+- Repositorios y apuntes de Alfonso Mariano de Uña del Brio para instalacion de prometheus y entender el funcionamiento de grafana
+- Prometheus Official documentacion 
+- Videos de youtube para fallos e instalacion y dashboards de grafana
+- Ayuda adicional generada con ChatGPT/OpenAI, Gemini, Claude para configuración, resolución de errores y creación de dashboards y alertas Prometheus/Grafana.
