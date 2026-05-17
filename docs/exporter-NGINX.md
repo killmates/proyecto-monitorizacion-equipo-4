@@ -1,8 +1,9 @@
 # ==> NGINX Exporter <==
 
-**Identificación**
+## Identificación
 
-Encargado Óscar Martín
+**Encargado:** Óscar Martín
+
 
 **¿Que hace este Exporter?**
 Extrae las métricas de rendimiento de un servidor NGINX y las traduce al formato compatible con Prometheus para que puedas monitorear tu servidor en tiempo real.
