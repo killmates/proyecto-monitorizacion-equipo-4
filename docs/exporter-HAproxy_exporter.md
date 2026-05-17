@@ -232,4 +232,5 @@ Abrir en navegador:
 
 Esta alerta detecta cuando el servicio HAProxy deja de responder durante más de 1 minuto. Se ha configurado con severidad crítica porque la caída del balanceador puede impedir el acceso a los servicios web monitorizados.
 
-  
+  <img width="1813" height="281" alt="imagen" src="https://github.com/user-attachments/assets/ca9a8ea8-c0e6-4c87-be9f-5828773703d4" />
+
