@@ -1,29 +1,27 @@
 # MySQL Exporter
 
-## ¿Qué hace el MySQL Exporter?
+## ¿Qué es?
 
-Es un exporter que recoge métricas de MySQL para que Prometheus pueda monitorizarlas.
+Es una herramienta que se conecta a MySQL y saca métricas para que Prometheus las pueda ver.
 
 ## Instalación
 
 ### 1. Instalar MySQL
-
-Primero instalamos MySQL en la máquina:
 
 ```bash
 sudo apt install mysql-server -y
 sudo systemctl enable --now mysql
 ```
 
-### 2. Crear usuario para el exporter en MySQL
+### 2. Crear el usuario en MySQL
 
-Entramos en MySQL:
+Entramos a MySQL:
 
 ```bash
 sudo mysql
 ```
 
-Dentro creamos el usuario con los permisos necesarios:
+Creamos el usuario que va a usar el exporter para conectarse:
 
 ```sql
 CREATE USER 'exporter'@'localhost' IDENTIFIED BY 'ContraseñaSegura!' WITH MAX_USER_CONNECTIONS 3;
@@ -32,9 +30,7 @@ FLUSH PRIVILEGES;
 EXIT;
 ```
 
-### 3. Descargar el MySQL Exporter
-
-Creamos el usuario del sistema y descargamos el binario:
+### 3. Descargar el exporter
 
 ```bash
 sudo useradd --no-create-home --shell /bin/false mysqld_exporter
@@ -45,15 +41,15 @@ sudo cp mysqld_exporter-0.15.1.linux-amd64/mysqld_exporter /usr/local/bin/
 sudo chown mysqld_exporter:mysqld_exporter /usr/local/bin/mysqld_exporter
 ```
 
-### 4. Fichero de credenciales
+### 4. Fichero con la contraseña
 
-Creamos el fichero donde guardamos el usuario y contraseña de MySQL:
+Creamos un fichero donde guardamos el usuario y la contraseña que creamos antes:
 
 ```bash
 sudo nano /etc/.mysqld_exporter.cnf
 ```
 
-Dentro ponemos esto:
+Ponemos esto dentro:
 
 ```ini
 [client]
@@ -62,18 +58,20 @@ password=ContraseñaSegura!
 host=localhost
 ```
 
-Le damos los permisos correctos:
+Guardamos y ajustamos los permisos:
 
 ```bash
 sudo chown root:mysqld_exporter /etc/.mysqld_exporter.cnf
 sudo chmod 640 /etc/.mysqld_exporter.cnf
 ```
 
-### 5. Crear el servicio
+### 5. Crear el servicio para que arranque solo
 
 ```bash
 sudo nano /etc/systemd/system/mysqld_exporter.service
 ```
+
+Pegamos esto:
 
 ```ini
 [Unit]
@@ -98,15 +96,13 @@ sudo systemctl daemon-reload
 sudo systemctl enable --now mysqld_exporter
 ```
 
-### 6. Añadir el target en Prometheus
+### 6. Decirle a Prometheus que recoja las métricas de MySQL
 
-Editamos el fichero de configuración de Prometheus:
+Editamos el fichero de configuración de Prometheus y añadimos esto:
 
 ```bash
 sudo nano /etc/prometheus/prometheus.yml
 ```
-
-Añadimos el job de MySQL:
 
 ```yaml
 scrape_configs:
@@ -115,7 +111,7 @@ scrape_configs:
       - targets: ['localhost:9104']
 ```
 
-Reiniciamos Prometheus para que coja los cambios:
+Reiniciamos para que coja los cambios:
 
 ```bash
 sudo systemctl restart prometheus
@@ -123,10 +119,10 @@ sudo systemctl restart prometheus
 
 ## Comprobación
 
-Para ver si funciona ejecutamos:
+Ejecutamos esto para ver si funciona:
 
 ```bash
 curl http://localhost:9104/metrics | grep mysql_up
 ```
 
-Si devuelve `mysql_up 1` es que todo está bien. También se puede comprobar desde la web de Prometheus en `http://TU_IP:9090` buscando `mysql_up`.
+Si sale `mysql_up 1` es que está funcionando bien. También se puede entrar a Prometheus desde el navegador en `http://TU_IP:9090` y buscar `mysql_up`.
