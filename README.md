@@ -246,3 +246,28 @@ http://IP_SERVIDOR:9090
 ```text
 http://IP_SERVIDOR:3000
 ```
+## 5. Decisiones tomadas
+
+Hemos elegido Node Exporter para monitorizar recursos del sistema como CPU, memoria RAM, disco y red, ya que es uno de los exporters más utilizados y ofrece métricas muy completas del servidor.
+
+Utilizamos NGINX para supervisar el estado y rendimiento del servidor web NGINX, permitiendo controlar conexiones, peticiones y actividad del servicio web.
+
+Tambien configuramos Blackbox porque permite comprobar disponibilidad y tiempos de respuesta con peticiones HTTP, simulando verificaciones reales desde el exterior.
+
+Escogimos HAProxy para monitorizar el balanceador de carga y comprobar el estado de los backends y conexiones activas.
+
+Por último utilizamos MySQL Exporter para supervisar el rendimiento de la base de datos y detectar posibles problemas de consultas o conexiones.
+
+Los puertos utilizados corresponden principalmente a los valores por defecto de cada servicio y exporter, para así facilitar la configuración y compatibilidad con Prometheus:
+
+- Prometheus → 9090
+- Node Exporter → 9100
+- HAProxy Exporter → 9101
+- MySQL Exporter → 9104
+- Blackbox Exporter → 9115
+- NGINX Exporter → 9117
+- Grafana → 3000
+- HAProxy → 8080
+- MySQL → 3306
+
+No elegimos otros exporters porque no eran necesarios para los objetivos que teniamos y los escogidos cuadraban mñas con nuestros intereses.
