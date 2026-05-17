@@ -1,4 +1,5 @@
 # BLACKBOX EXPORTER
+Leo Serrano Bermúdez
 ### ¿Qué hace blackbox?
 Es un exporter encargado de monitorear metricas de red como HTTP, HTTPS, DNS, TCP Y ICMP. Con el puedes analizar el tiempo que tarda un endpoint en responder o si está caido con diferentes alertas configurables.
 
