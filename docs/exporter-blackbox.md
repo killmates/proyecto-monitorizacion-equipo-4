@@ -60,17 +60,18 @@ Nuetra elección: Asegurará la identidad de la página web y el intercambio de 
 ---
 
 ### Alerta propuesta
-#### WebsiteDown\
+#### WebsiteDown
 Lenguaje natural: Si el sitio web no responde por más de un minuto está caido.\
 Justificación del umbral: Normalmente las paginas web suelen responder rapido o si tardan no superan una cantidad de tiempo muy alta, es por eso que si el sitio tarda más de un minuto se dará por echo que está caida.
 
-#### SSLExpiringSoon\
+#### SSLExpiringSoon
 Lenguaje natural: Manda un aviso cuando quede poco tiempo para que expire la licencia SSL.\
 Justificación del umbral: Sin está licencia el intercambio de información entre cliente y endpoint no es segura por lo que los navegadores no dejan acceder, asi que con un aviso con antelación de una semana o menos hay tiempo suficiente para renovarlo.
 
-#### RespuestaLenta\
+#### RespuestaLenta
 Lenguaje natural: Si el sitio web no responde por más de un minuto está caido.\
 Justificación del umbral: Las páginas web suelen tener una respuesta rápida, por lo que si tarda mas de 30 segundos en responder es porque algo esta colapsando el intercambio de datos.
+
 ---
 
 ### Inconveniente
