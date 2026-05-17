@@ -1,9 +1,25 @@
-# proyecto-monitorizacion-equipo-4
-En este proyecto monitorearemos un Ubuntu Server 22.04 mediante Prometheus y diferentes exporters configurados por los administradores del servicio: 
-Node Exporter (Sufian)
-NGINX Exporter (Oscar)
-Blackbox Exporter (Leo)
-HAProxy Exporter (John)
-ySQL Exporter (Rubén).
+# Proyecto Monitorización Equipo 4
 
-Mediante el uso de estos exporters se supervisan métricas del sistema, servicios web y bases de datos en tiempo real.
+## Descripción
+
+En este proyecto se monitoriza un servidor **Ubuntu Server 22.04** utilizando **Prometheus** y distintos exporters configurados por los miembros del equipo.
+
+### Miembros del equipo
+
+- **John** — Encargado del proyecto + HAProxy Exporter  
+- **Soufian** — Node Exporter  
+- **Oscar** — NGINX Exporter  
+- **Leo** — Blackbox Exporter  
+- **Rubén** — MySQL Exporter  
+
+## Objetivo
+
+Mediante el uso de estos exporters se supervisan métricas del sistema, servicios web, disponibilidad de red, balanceo de carga y bases de datos en tiempo real.
+
+Los exporters utilizados en el proyecto son:
+
+- Node Exporter
+- NGINX Exporter
+- Blackbox Exporter
+- HAProxy Exporter
+- MySQL Exporter
