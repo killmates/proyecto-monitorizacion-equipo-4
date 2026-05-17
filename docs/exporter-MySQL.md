@@ -101,6 +101,21 @@ Tambien puedes mirarlo el el target de prometheus
 <img width="512" height="219" alt="unnamed" src="https://github.com/user-attachments/assets/2400ed92-46a7-4c01-a710-1cd21d6e660d" />
 
 
+# ALERTAS
+
+Cuando el mysql deja de funcionar, manda una alerta que avisa de que no esta operativa la base de datos en esos momentos
+
+      alert: MySQLDown
+        expr: mysql_up == 0
+        for: 1m,
+
+          labels:
+            severity: critical
+ 
+          annotations:
+            summary: "MySQL DOWN"
+            description: "MySQL no responde"
+
 
 
 
